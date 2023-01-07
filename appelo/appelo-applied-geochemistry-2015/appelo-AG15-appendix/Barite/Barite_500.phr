@@ -1,0 +1,49 @@
+DATABASE ..\PITZER.DAT
+PRINT; -reset false; -warnings 0
+
+SOLUTION 1
+-pressure 493
+-temp 100
+REACTION 1
+ NaCl 1; 1e-5 10*0.01 10*0.1 5*1
+EQUILIBRIUM_PHASES 1
+ Barite
+INCREMENTAL_REACTIONS true
+USER_GRAPH 1
+-plot_tsv_file Barite_500_meas.csv
+-plot_tsv_file Barite_500.csv
+-axis_scale x_axis 0 7
+-axis_scale y_axis 0 2
+-axis_scale sy_axis 0 2
+-chart_title "Barite solubility at 500 bar"
+-axis_titles "NaCl / (mol/kgw)" "Ba / (mmol/kgw)"
+-connect_simulations false
+# -initial_solutions true
+10 graph_x tot("Na")
+20 graph_y tot("Ba")*1e3
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE 1
+ 150
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE 1
+ 200
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE 1
+ 250
+USER_GRAPH 1
+10 graph_x tot("Na")
+20 graph_y tot("Ba")*1e3
+# 30 plot_xy tot("Na"), tot("Ba")*1e3, color = Orange symbol = None, y_axis = 2 
+END

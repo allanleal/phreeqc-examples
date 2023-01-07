@@ -1,0 +1,40 @@
+DATABASE c:\phreeqc\database\pitzer.dat
+# DATABASE c:\phreeqc\database\pitzer_old.dat
+
+SOLUTION 1
+ pH 7 charge
+ C(4) 155 CO2(g) 1.6
+ -pressure 41
+ Na 1e3; Cl 1e3
+REACTION_TEMPERATURE
+25 300 in 31
+PRINT; -reset false
+GAS_PHASE 1
+ -fixed_volume
+ CO2(g) 41
+ H2O(g) 0
+USER_GRAPH 1
+-plot_tsv_file drum.dat
+axis_scale x_axis 0 300
+axis_scale y_axis 0 1
+-connect_simulations false
+-axis_titles "temp / ºC" "CO2 / (mol/kgw)"
+10 plot_xy tc, tot("C"), symbol = Diamond symbol_size = 0, line_width = 1, color = Red 
+# 20 plot_xy tc, pressure, y_axis = 2 
+END
+
+SOLUTION 1
+ pH 7 charge
+ C(4) 155 CO2(g) 1.53
+ -pressure 36
+ Na 6e3; Cl 6e3
+
+GAS_PHASE 1
+ -fixed_volume
+ CO2(g) 36
+ H2O(g) 0
+USE reaction_temperature 1
+USER_GRAPH 1
+10 plot_xy tc, tot("C"), symbol = None, line_width = 1, color = Green 
+# 20 plot_xy tc, pressure, y_axis = 2 
+END

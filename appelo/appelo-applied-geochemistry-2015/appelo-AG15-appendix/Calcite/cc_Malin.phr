@@ -1,0 +1,20 @@
+DATABASE ..\PITZER.DAT
+PRINT; -reset false; -warnings 0
+SOLUTION 1
+pH 7 charge
+Na 3e3; Cl 3e3
+-temp 200
+-pressure 580
+EQUILIBRIUM_PHASES 1
+Calcite
+REACTION
+CO2 1; 0 10*0.08
+INCREMENTAL_REACTIONS true
+USER_GRAPH 1
+-chart_title "calcite solubility at 200ºC, 580 atm in 3 M NaCl"
+-axis_titles "CO2 / (mol/kgw)" "Ca / (mmol/kgw)" "CO2 pressure / atm"
+-plot_tsv_file cc_Malin.dat
+10 graph_x mol("CO2")
+20 graph_y tot("Ca") * 1e3
+# 30 graph_sy sr("CO2(g)")
+END

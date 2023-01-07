@@ -1,0 +1,52 @@
+# SiO2(a) solubility f(T NaCl)
+DATABASE ..\pitzer.DAT
+#
+SOLUTION 1
+END
+ 
+USE solution 1
+EQUILIBRIUM_PHASES 1
+ SiO2(a) 0
+REACTION 1
+NaCl 1; 0 20*0.325
+INCREMENTAL_REACTIONS true
+PRINT; -reset false; -status false
+USER_GRAPH
+# -headings dif_Si tc Si
+-axis_titles "NaCl / (mol/kgw)" "Si / (mol/kgw)"
+-axis_scale y_axis 0 0.03
+-plot_tsv_file SiO2_NaCl.dat
+-connect_simulations false
+10 graph_x tot("Na")
+20 graph_y tot("Si")
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+100
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+150
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+200
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+250
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+300
+END

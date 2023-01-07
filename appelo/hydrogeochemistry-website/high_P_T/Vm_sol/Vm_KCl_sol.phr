@@ -1,0 +1,717 @@
+PRINT; -reset false
+SOLUTION 1; pH 7 charge
+END
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 5.000000
+REACTION_PRESSURE; 1.000000
+# from 0 to 23.
+REACTION; KCl 1
+0 0.040000 0.060040 0.090000 0.100010 0.120060 0.160000 0.199980 0.250000 0.250170 0.350020 0.400000 0.452530 0.499660 0.499920 0.700000 0.936920 1.000000 1.396060 1.917390 2.394920 2.961220 \
+3.446570 4.059680
+USER_GRAPH; -headings 5 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 25.350000, 24.970000, 25.373000, 25.610000, 25.300000, 25.566000, 25.650000, 25.698000, 25.720000, 26.134000, 25.989000, 26.058000, 26.058000, 26.058000, 26.485000, 26.883000, 26.929000, 27.472000, 28.061000, 28.509000, 28.973000, \
+29.330000, 29.724000,
+20 dim d(24)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 24 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Square, line_w = 0, color = Red
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Red
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 10.000000
+REACTION_PRESSURE; 1.000000
+# from 23 to 30.
+REACTION; KCl 1
+0 0.504100 0.991000 2.047600 2.496800 3.001300 3.532700 3.961800
+USER_GRAPH; -headings 10 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 26.700000, 27.489000, 28.687000, 29.059000, 29.440000, 29.755000, 29.989000,
+20 dim d(8)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 8 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Diamond, line_w = 0, color = Green
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Green
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 15.000000
+REACTION_PRESSURE; 1.000000
+# from 30 to 55.
+REACTION; KCl 1
+0 0.040000 0.050000 0.060040 0.090000 0.100000 0.100010 0.160000 0.250000 0.400000 0.444040 0.500000 0.700000 0.900260 1.000000 1.000000 1.370830 1.862350 2.000000 2.359040 2.870070 3.000000 \
+3.402230 3.951200 4.000000 4.401560
+USER_GRAPH; -headings 15 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 26.225000, 26.264000, 25.564000, 26.528000, 27.105000, 25.564000, 26.705000, 26.857000, 27.127000, 27.305000, 27.559000, 27.619000, 27.845000, 28.208000, 28.021000, 28.461000, 28.938000, 29.201000, 29.365000, 29.738000, 29.913000, \
+30.091000, 30.422000, 30.502000, 30.658000,
+20 dim d(26)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 26 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Triangle, line_w = 0, color = Blue
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Blue
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 20.000000
+REACTION_PRESSURE; 1.000000
+# from 55 to 80.
+REACTION; KCl 1
+0 0.050000 0.098800 0.100000 0.329740 0.500000 0.504100 0.518410 0.991000 1.000000 1.024090 1.509700 1.546910 2.000000 2.047600 2.106650 2.496800 2.725170 3.000000 3.001300 3.421610 3.532700 \
+3.930330 3.961800 4.000000 4.554690
+USER_GRAPH; -headings 20 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 27.137000, 26.863000, 27.232000, 27.740000, 27.969000, 27.664000, 28.032000, 28.363000, 28.593000, 28.608000, 28.971000, 29.107000, 29.490000, 29.432000, 29.569000, 29.784000, 30.010000, 30.194000, 30.106000, 30.428000, 30.402000, \
+30.707000, 30.640000, 30.769000, 31.010000,
+20 dim d(26)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 26 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Circle, line_w = 0, color = Orange
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Orange
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 24.040000
+REACTION_PRESSURE; 1.000000
+# from 80 to 83.
+REACTION; KCl 1
+0 0.294430 0.415530 0.570410
+USER_GRAPH; -headings 24 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 27.077000, 27.484000, 27.812000,
+20 dim d(4)
+30 read d(1), d(2), d(3), d(4),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 4 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = XCross, line_w = 0, color = Magenta
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Magenta
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 25.000000
+REACTION_PRESSURE; 1.000000
+# from 83 to 274.
+REACTION; KCl 1
+0 0.040000 0.040110 0.042251 0.046420 0.050000 0.051030 0.055810 0.057500 0.059830 0.060040 0.075900 0.079740 0.087000 0.087690 0.090000 0.095500 0.096350 0.098490 0.099740 0.099900 0.099900 \
+0.100000 0.100400 0.101582 0.118200 0.124600 0.133100 0.134000 0.145800 0.150040 0.159700 0.160000 0.161565 0.163100 0.172190 0.182566 0.199100 0.199980 0.202740 0.220820 0.250000 0.250000 \
+0.250170 0.255500 0.267895 0.274100 0.274290 0.293810 0.303040 0.318240 0.319700 0.329740 0.350020 0.364118 0.368600 0.400000 0.400370 0.404300 0.412334 0.438650 0.443200 0.447460 0.454980 \
+0.482430 0.494400 0.499660 0.499920 0.500000 0.500000 0.500000 0.503100 0.503890 0.504100 0.518410 0.518843 0.533100 0.568700 0.592300 0.596800 0.606600 0.614880 0.649742 0.700000 0.704470 \
+0.706900 0.723500 0.725030 0.748500 0.761800 0.800400 0.809600 0.824770 0.893560 0.903210 0.928010 0.941400 0.947700 0.991000 0.997300 1.000000 1.000000 1.000000 1.000000 1.004910 1.009600 \
+1.016000 1.018000 1.019582 1.021575 1.024090 1.049015 1.159300 1.215700 1.217300 1.296800 1.358400 1.375273 1.377650 1.383660 1.413900 1.419500 1.469000 1.500000 1.500654 1.521092 1.546910 \
+1.604800 1.703200 1.721800 1.775800 1.843810 1.847000 2.000000 2.000000 2.000000 2.011393 2.047600 2.083023 2.091000 2.106000 2.106650 2.284600 2.350000 2.366920 2.374500 2.424000 2.496800 \
+2.500000 2.604000 2.725170 2.767704 2.797700 2.880830 2.893580 3.000000 3.000000 3.000000 3.001300 3.012000 3.013678 3.355400 3.410020 3.412300 3.421610 3.493400 3.500000 3.532700 3.534700 \
+3.548500 3.590115 3.918000 3.930330 3.931770 3.948700 3.956000 3.957850 3.961800 4.000000 4.000000 4.033833 4.153000 4.272000 4.400040 4.400580 4.500000 4.500000 4.554690 4.591192 4.603000 \
+4.693400 4.818100
+USER_GRAPH; -headings 25 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 26.563000, 27.274000, 27.601000, 27.690000, 27.732000, 27.656000, 27.048000, 27.901000, 27.353000, 27.440000, 27.693000, 27.429000, 27.592000, 27.790000, 27.101000, 27.725000, 27.523000, 27.472000, 27.194000, 27.772000, 28.074000, \
+27.517000, 26.697000, 27.548000, 28.281000, 27.587000, 27.556000, 27.646000, 27.636000, 27.611000, 26.983000, 27.384000, 27.466000, 27.537000, 28.582000, 28.117000, 27.556000, 28.582000, 28.582000, 27.765000, 28.713000, 27.597000, \
+28.582000, 27.830000, 27.759000, 27.904000, 28.018000, 28.582000, 27.795000, 27.943000, 27.936000, 28.085000, 28.582000, 28.140000, 28.582000, 27.874000, 27.991000, 28.111000, 28.221000, 28.197000, 28.189000, 28.148000, 28.468000, \
+28.582000, 28.043000, 28.582000, 28.582000, 28.408000, 28.417000, 28.408000, 27.878000, 28.160000, 28.119000, 28.379000, 28.251000, 28.319000, 28.582000, 28.368000, 28.356000, 28.582000, 28.314000, 28.367000, 28.356000, 28.719000, \
+28.534000, 28.524000, 28.452000, 28.786000, 28.582000, 28.604000, 28.582000, 28.558000, 28.976000, 28.915000, 28.681000, 28.582000, 28.708000, 28.685000, 28.815000, 28.923000, 28.934000, 28.754000, 28.933000, 28.756000, 28.582000, \
+28.657000, 28.857000, 28.724000, 28.799000, 28.939000, 29.121000, 28.582000, 28.582000, 28.883000, 29.018000, 29.090000, 29.442000, 29.422000, 29.440000, 29.320000, 28.582000, 29.411000, 29.379000, 29.293000, 29.272000, 29.423000, \
+28.582000, 29.469000, 29.446000, 29.391000, 29.774000, 28.582000, 29.810000, 29.767000, 29.766000, 29.630000, 29.725000, 29.729000, 29.792000, 29.697000, 29.859000, 29.842000, 29.962000, 30.169000, 30.167000, 29.938000, 30.062000, \
+30.107000, 30.132000, 30.271000, 30.154000, 30.195000, 30.485000, 30.498000, 30.425000, 30.415000, 30.412000, 30.369000, 30.419000, 30.299000, 30.546000, 30.794000, 30.767000, 30.669000, 30.623000, 30.683000, 30.680000, 30.672000, \
+30.643000, 30.650000, 30.959000, 30.934000, 31.001000, 30.849000, 30.865000, 31.016000, 30.888000, 30.983000, 30.947000, 30.850000, 30.823000, 30.865000, 31.279000, 31.224000, 31.191000, 31.192000, 31.224000, 31.144000, 31.150000, \
+31.212000, 31.272000,
+20 dim d(192)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33), d(34), d(35), d(36), d(37), d(38), d(39), d(40), d(41), d(42), \
+d(43), d(44), d(45), d(46), d(47), d(48), d(49), d(50), d(51), d(52), d(53), d(54), d(55), d(56), d(57), d(58), d(59), d(60), d(61), d(62), d(63), \
+d(64), d(65), d(66), d(67), d(68), d(69), d(70), d(71), d(72), d(73), d(74), d(75), d(76), d(77), d(78), d(79), d(80), d(81), d(82), d(83), d(84), \
+d(85), d(86), d(87), d(88), d(89), d(90), d(91), d(92), d(93), d(94), d(95), d(96), d(97), d(98), d(99), d(100), d(101), d(102), d(103), d(104), d(105), \
+d(106), d(107), d(108), d(109), d(110), d(111), d(112), d(113), d(114), d(115), d(116), d(117), d(118), d(119), d(120), d(121), d(122), d(123), d(124), d(125), d(126), \
+d(127), d(128), d(129), d(130), d(131), d(132), d(133), d(134), d(135), d(136), d(137), d(138), d(139), d(140), d(141), d(142), d(143), d(144), d(145), d(146), d(147), \
+d(148), d(149), d(150), d(151), d(152), d(153), d(154), d(155), d(156), d(157), d(158), d(159), d(160), d(161), d(162), d(163), d(164), d(165), d(166), d(167), d(168), \
+d(169), d(170), d(171), d(172), d(173), d(174), d(175), d(176), d(177), d(178), d(179), d(180), d(181), d(182), d(183), d(184), d(185), d(186), d(187), d(188), d(189), \
+d(190), d(191), d(192),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 192 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Plus, line_w = 0, color = Yellow
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Yellow
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 30.000000
+REACTION_PRESSURE; 1.000000
+# from 274 to 307.
+REACTION; KCl 1
+0 0.050000 0.100000 0.329740 0.500000 0.500000 0.504100 0.518410 0.991000 1.000000 1.000000 1.024090 1.500000 1.509700 1.546910 2.000000 2.000000 2.047600 2.106650 2.496800 2.500000 2.725170 \
+3.000000 3.000000 3.001300 3.421610 3.500000 3.532700 3.930330 3.961800 4.000000 4.000000 4.500000 4.693400
+USER_GRAPH; -headings 30 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.155000, 28.017000, 28.371000, 28.749000, 28.529000, 28.297000, 28.668000, 28.966000, 29.192000, 29.132000, 29.211000, 29.572000, 29.552000, 29.675000, 30.012000, 29.957000, 29.950000, 30.101000, 30.285000, 30.293000, 30.489000, \
+30.639000, 30.593000, 30.585000, 30.871000, 30.861000, 30.892000, 31.125000, 31.101000, 31.180000, 31.112000, 31.356000, 31.434000,
+20 dim d(34)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33), d(34),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 34 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Star, line_w = 0, color = Black
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Black
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 35.000000
+REACTION_PRESSURE; 1.000000
+# from 307 to 350.
+REACTION; KCl 1
+0 0.040000 0.050000 0.056350 0.060040 0.078020 0.090000 0.100000 0.100010 0.120060 0.160000 0.199980 0.247380 0.250000 0.250170 0.350020 0.400000 0.434010 0.499660 0.499920 0.500000 0.500000 \
+0.700000 0.919940 1.000000 1.000000 1.000000 1.382220 1.500000 1.848700 2.000000 2.000000 2.355200 2.500000 2.879470 3.000000 3.000000 3.419150 3.500000 3.943380 4.000000 4.000000 4.400760 \
+4.500000
+USER_GRAPH; -headings 35 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 26.926000, 28.016000, 27.766000, 27.690000, 27.879000, 27.566000, 28.134000, 28.190000, 27.930000, 27.873000, 28.380000, 29.106000, 28.131000, 28.420000, 28.849000, 28.414000, 28.688000, 28.759000, 28.907000, 28.973000, 28.812000, \
+28.873000, 29.268000, 29.372000, 29.243000, 29.362000, 29.675000, 29.786000, 30.068000, 30.198000, 30.153000, 30.375000, 30.480000, 30.686000, 30.747000, 30.764000, 30.973000, 31.021000, 31.229000, 31.328000, 31.264000, 31.430000, \
+31.499000,
+20 dim d(44)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33), d(34), d(35), d(36), d(37), d(38), d(39), d(40), d(41), d(42), \
+d(43), d(44),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 44 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = TriangleDown, line_w = 0, color = Aqua
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Aqua
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 40.000000
+REACTION_PRESSURE; 1.000000
+# from 350 to 382.
+REACTION; KCl 1
+0 0.098800 0.099900 0.329740 0.500000 0.504100 0.518410 0.706900 0.991000 1.000000 1.024090 1.413900 1.500000 1.509700 1.546910 2.000000 2.047600 2.106650 2.496800 2.500000 2.725170 3.000000 \
+3.001300 3.421610 3.500000 3.532700 3.534700 3.930330 3.961800 4.000000 4.500000 4.554690 4.693400
+USER_GRAPH; -headings 40 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 27.881000, 28.398000, 28.765000, 28.891000, 28.774000, 29.113000, 29.265000, 29.387000, 29.490000, 29.618000, 29.726000, 29.925000, 29.948000, 30.061000, 30.274000, 30.331000, 30.443000, 30.633000, 30.602000, 30.807000, 30.877000, \
+30.906000, 31.175000, 31.135000, 31.164000, 31.183000, 31.417000, 31.368000, 31.377000, 31.597000, 31.673000, 31.661000,
+20 dim d(33)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 33 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = HDash, line_w = 0, color = Brown
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Brown
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 45.000000
+REACTION_PRESSURE; 1.000000
+# from 382 to 424.
+REACTION; KCl 1
+0 0.040000 0.050000 0.060040 0.090000 0.100000 0.100010 0.110840 0.120060 0.140240 0.160000 0.199980 0.214990 0.250000 0.250170 0.350020 0.400000 0.431920 0.499660 0.499920 0.500000 0.500000 \
+0.700000 1.000000 1.000000 1.000000 1.500000 1.668760 2.000000 2.000000 2.106830 2.500000 2.709410 3.000000 3.000000 3.020280 3.481320 3.500000 3.980310 4.000000 4.000000 4.500000 4.501070 \
+
+USER_GRAPH; -headings 45 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 27.898000, 28.582000, 28.582000, 28.183000, 28.280000, 28.582000, 28.376000, 28.582000, 28.441000, 28.316000, 28.582000, 28.601000, 28.512000, 28.582000, 28.582000, 28.780000, 28.922000, 28.582000, 28.582000, 29.237000, 28.994000, \
+29.188000, 29.630000, 29.549000, 29.619000, 30.051000, 30.165000, 30.454000, 30.375000, 30.455000, 30.688000, 30.819000, 30.998000, 30.975000, 30.991000, 31.219000, 31.232000, 31.446000, 31.554000, 31.467000, 31.682000, 31.673000, \
+
+20 dim d(43)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33), d(34), d(35), d(36), d(37), d(38), d(39), d(40), d(41), d(42), \
+d(43),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 43 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = VDash, line_w = 0, color = Red
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Red
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 48.750000
+REACTION_PRESSURE; 1.000000
+# from 424 to 427.
+REACTION; KCl 1
+0 0.294430 0.415530 0.570410
+USER_GRAPH; -headings 49 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.155000, 28.506000, 28.828000,
+20 dim d(4)
+30 read d(1), d(2), d(3), d(4),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 4 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Square, line_w = 0, color = Green
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Green
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 50.000000
+REACTION_PRESSURE; 1.000000
+# from 427 to 436.
+REACTION; KCl 1
+0 0.329740 0.518410 1.024090 1.546910 2.106650 2.725170 3.421610 3.930330 4.554690
+USER_GRAPH; -headings 50 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 29.003000, 29.379000, 29.875000, 30.288000, 30.659000, 31.007000, 31.361000, 31.592000, 31.842000,
+20 dim d(10)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 10 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Diamond, line_w = 0, color = Blue
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Blue
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 55.000000
+REACTION_PRESSURE; 1.000000
+# from 436 to 473.
+REACTION; KCl 1
+0 0.040000 0.049330 0.050000 0.060040 0.090000 0.092710 0.100000 0.100010 0.110500 0.120060 0.160000 0.198190 0.199980 0.250000 0.250170 0.350020 0.399950 0.400000 0.464890 0.499660 0.499920 \
+0.500000 0.500260 0.700000 0.915600 1.000000 1.000000 1.382520 1.855590 2.000000 2.344370 2.877550 3.000000 3.407060 3.934180 4.000000 4.400950
+USER_GRAPH; -headings 55 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.374000, 27.981000, 28.540000, 28.220000, 28.462000, 28.588000, 28.728000, 28.570000, 28.816000, 28.540000, 28.565000, 28.994000, 28.830000, 28.725000, 28.930000, 29.382000, 29.383000, 28.962000, 29.444000, 29.331000, 29.389000, \
+29.331000, 29.499000, 29.351000, 29.953000, 29.810000, 29.698000, 30.364000, 30.672000, 30.540000, 30.982000, 31.280000, 31.149000, 31.522000, 31.781000, 31.680000, 31.975000,
+20 dim d(38)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33), d(34), d(35), d(36), d(37), d(38),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 38 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Triangle, line_w = 0, color = Orange
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Orange
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 60.000000
+REACTION_PRESSURE; 1.000000
+# from 473 to 477.
+REACTION; KCl 1
+0 0.099900 0.706900 1.413900 3.534700
+USER_GRAPH; -headings 60 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.053000, 29.966000, 30.165000, 31.421000,
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Circle, line_w = 0, color = Magenta
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Magenta
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 65.000000
+REACTION_PRESSURE; 1.000000
+# from 477 to 501.
+REACTION; KCl 1
+0 0.040000 0.060040 0.090000 0.099980 0.100010 0.120060 0.160000 0.199980 0.250000 0.250170 0.350020 0.400000 0.414940 0.499660 0.499920 0.700000 0.791540 1.000000 1.210810 2.053600 2.494080 \
+3.425060 3.889560 4.400920
+USER_GRAPH; -headings 65 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.263000, 28.582000, 28.474000, 28.444000, 28.582000, 28.582000, 28.595000, 28.582000, 28.754000, 28.582000, 28.582000, 28.975000, 29.166000, 28.582000, 28.582000, 29.371000, 29.627000, 29.724000, 30.429000, 30.644000, 30.915000, \
+31.407000, 31.603000, 31.839000,
+20 dim d(25)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 25 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = XCross, line_w = 0, color = Yellow
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Yellow
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 73.770000
+REACTION_PRESSURE; 1.000000
+# from 501 to 504.
+REACTION; KCl 1
+0 0.294430 0.415530 0.570410
+USER_GRAPH; -headings 74 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.221000, 28.609000, 28.972000,
+20 dim d(4)
+30 read d(1), d(2), d(3), d(4),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 4 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Plus, line_w = 0, color = Black
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Black
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 75.000000
+REACTION_PRESSURE; 1.000000
+# from 504 to 533.
+REACTION; KCl 1
+0 0.040000 0.060040 0.090000 0.100010 0.100100 0.120060 0.160000 0.199980 0.250000 0.250170 0.350020 0.400000 0.408260 0.499660 0.499920 0.700000 0.708300 0.819660 1.000000 1.236640 1.416600 \
+1.712540 2.107740 2.547810 3.016390 3.500440 3.541500 3.996110 4.500340
+USER_GRAPH; -headings 75 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 27.731000, 27.810000, 28.060000, 28.510000, 27.455000, 28.340000, 28.316000, 28.730000, 28.539000, 28.810000, 29.262000, 28.805000, 29.119000, 29.239000, 29.253000, 29.253000, 28.971000, 29.679000, 29.620000, 30.063000, 30.095000, \
+30.447000, 30.730000, 30.990000, 31.211000, 31.480000, 31.379000, 31.704000, 31.922000,
+20 dim d(30)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 30 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Star, line_w = 0, color = Aqua
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Aqua
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 85.000000
+REACTION_PRESSURE; 1.000000
+# from 533 to 557.
+REACTION; KCl 1
+0 0.040000 0.060040 0.065980 0.090000 0.100010 0.100450 0.120060 0.160000 0.199980 0.205670 0.250000 0.250170 0.350020 0.400000 0.499660 0.499920 0.700000 1.000000 1.230600 1.661060 3.030150 \
+3.509120 4.002930 4.500840
+USER_GRAPH; -headings 85 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 26.565000, 28.582000, 28.259000, 27.590000, 28.582000, 28.240000, 28.582000, 27.932000, 28.582000, 28.403000, 28.209000, 28.582000, 28.582000, 28.532000, 28.582000, 28.582000, 29.027000, 29.417000, 29.878000, 30.224000, 31.094000, \
+31.358000, 31.587000, 31.810000,
+20 dim d(25)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 25 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = TriangleDown, line_w = 0, color = Brown
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Brown
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 95.000000
+REACTION_PRESSURE; 1.000000
+# from 557 to 580.
+REACTION; KCl 1
+0 0.040000 0.090000 0.102440 0.160000 0.187950 0.199980 0.250000 0.250170 0.350020 0.400000 0.406990 0.499660 0.499920 0.700000 1.000000 1.207300 1.670930 2.097480 2.557550 3.037690 3.497120 \
+3.992700 4.500120
+USER_GRAPH; -headings 95 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 26.400000, 27.318000, 27.817000, 27.651000, 28.018000, 28.582000, 27.895000, 28.582000, 28.582000, 28.236000, 28.527000, 28.582000, 28.582000, 28.720000, 29.132000, 29.513000, 29.923000, 30.225000, 30.566000, 30.863000, 31.098000, \
+31.349000, 31.590000,
+20 dim d(24)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 24 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = HDash, line_w = 0, color = Red
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Red
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 98.820000
+REACTION_PRESSURE; 1.000000
+# from 580 to 583.
+REACTION; KCl 1
+0 0.489100 0.942900 2.013000
+USER_GRAPH; -headings 99 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 27.982000, 28.579000, 29.895000,
+20 dim d(4)
+30 read d(1), d(2), d(3), d(4),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 4 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = VDash, line_w = 0, color = Green
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Green
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 100.000000
+REACTION_PRESSURE; 1.000000
+# from 583 to 586.
+REACTION; KCl 1
+0 0.710400 1.420700 3.551700
+USER_GRAPH; -headings 100 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.371000, 29.460000, 30.894000,
+20 dim d(4)
+30 read d(1), d(2), d(3), d(4),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 4 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Square, line_w = 0, color = Blue
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Blue
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 124.000000
+REACTION_PRESSURE; 1.000000
+# from 586 to 588.
+REACTION; KCl 1
+0 1.428700 3.571800
+USER_GRAPH; -headings 124 °C-1.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.144000, 29.919000,
+20 dim d(3)
+30 read d(1), d(2), d(3),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 3 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Diamond, line_w = 0, color = Orange
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Orange
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 75.000000
+REACTION_PRESSURE; 20.000000
+# from 588 to 592.
+REACTION; KCl 1
+0 0.100000 0.200000 0.500000 1.000000
+USER_GRAPH; -headings 75 °C-20.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 28.400000, 28.600000, 29.260000, 29.770000,
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Triangle, line_w = 0, color = Magenta
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Magenta
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 100.000000
+REACTION_PRESSURE; 20.000000
+# from 592 to 596.
+REACTION; KCl 1
+0 0.100000 0.200000 0.500000 1.000000
+USER_GRAPH; -headings 100 °C-20.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 26.200000, 27.210000, 27.990000, 28.840000,
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Circle, line_w = 0, color = Yellow
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Yellow
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 125.000000
+REACTION_PRESSURE; 20.000000
+# from 596 to 600.
+REACTION; KCl 1
+0 0.100000 0.200000 0.500000 1.000000
+USER_GRAPH; -headings 125 °C-20.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 24.580000, 25.650000, 26.640000, 27.820000,
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = XCross, line_w = 0, color = Black
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Black
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 150.000000
+REACTION_PRESSURE; 20.000000
+# from 600 to 604.
+REACTION; KCl 1
+0 0.100000 0.200000 0.500000 1.000000
+USER_GRAPH; -headings 150 °C-20.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 22.560000, 22.970000, 24.270000, 25.950000,
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Plus, line_w = 0, color = Aqua
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Aqua
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 175.000000
+REACTION_PRESSURE; 20.000000
+# from 604 to 608.
+REACTION; KCl 1
+0 0.100000 0.200000 0.500000 1.000000
+USER_GRAPH; -headings 175 °C-20.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 17.000000, 18.430000, 20.660000, 22.890000,
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Star, line_w = 0, color = Brown
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Brown
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 200.000000
+REACTION_PRESSURE; 20.000000
+# from 608 to 609.
+REACTION; KCl 1
+0 1.000000
+USER_GRAPH; -headings 200 °C-20.atm
+ -axis_titles "KCl / (mol/kg H2O)" "KCl molar volume / (cm³/mol)"
+10 data 0, 18.950000,
+20 dim d(2)
+30 read d(1), d(2),
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 74.555) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+50 if step_no > 1 then Vmol = Vm("K+") + Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+64 if tc > 201 then dif = 0
+90 if step_no = 2 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = TriangleDown, line_w = 0, color = Red
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Red
+150 end
+END

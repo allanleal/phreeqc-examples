@@ -1,0 +1,28 @@
+   Input file: cc_1barCO2.phr
+  Output file: cc_1barCO2.phr.out
+Using PHREEQC: version 3.6.5, compiled February 24, 2021
+Database file: c:\phreeqc\database\phreeqc.dat
+
+------------------
+Reading data base.
+------------------
+
+	SOLUTION_MASTER_SPECIES
+	SOLUTION_SPECIES
+	PHASES
+	EXCHANGE_MASTER_SPECIES
+	EXCHANGE_SPECIES
+	SURFACE_MASTER_SPECIES
+	SURFACE_SPECIES
+	RATES
+	END
+------------------------------------
+Reading input data for simulation 1.
+------------------------------------
+
+	PRINT
+	 reset false
+-------------------------------
+End of Run after 0.654 Seconds.
+-------------------------------
+

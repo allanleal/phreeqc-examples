@@ -1,0 +1,35 @@
+# SiO2(a) solubility f(LiCl, LiNO3)
+DATABASE ..\pitzer.DAT
+SOLUTION_MASTER_SPECIES
+N		NO3-	0	NO3		14.0067
+SOLUTION_SPECIES
+NO3- = NO3-
+PITZER
+-ZETA
+ H4SiO4   Li+   NO3-     -8e-3
+
+SOLUTION 1
+END
+ 
+USE solution 1
+EQUILIBRIUM_PHASES 1
+ SiO2(a) 0
+REACTION 1
+LiCl 1; 0 20*1
+INCREMENTAL_REACTIONS true
+PRINT; -reset false; -status false
+USER_GRAPH
+# -headings dif_Si tc Si
+-axis_titles "Li-anion / (mol/kgw)" "Si / (mol/kgw)"
+-plot_tsv_file sio2_Li.dat
+-connect_simulations false
+10 graph_x tot("Li")
+20 graph_y tot("Si")
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+REACTION 1
+LiNO3 1; 0 20*0.6
+REACTION_TEMPERATURE 1;
+25
+END

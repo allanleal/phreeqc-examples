@@ -1,0 +1,39 @@
+DATABASE ..\PITZER.DAT
+PRINT; -reset false
+SOLUTION 1
+temp 75
+ pH 7 charge
+ Ca 2.3e3
+ Cl 4.6e3
+GAS_PHASE 1
+ -fixed_volume 
+ CO2(g) 5
+ H2O(g) 1e-2
+REACTION 1
+ CO2 1; 0 0.001 10*0.5 10*2
+INCREMENTAL_REACTIONS true
+USER_GRAPH 1
+ -plot_tsv_file CO2_CaCl2.csv # data from Springer et al. 2012; Chemical Geology 322-323; 151-171, fig. 10b
+ -axis_scale x_axis 10 1e3 a a log
+ -axis_scale y_axis 0.01 1 a a log
+ -axis_titles "P / atm" "total CO2 / (mol/kgw)"
+ -chart_title "CO2 solubility in 2.3M CaCl2"
+ -connect_simulations false
+ 10 graph_x pressure
+ 20 graph_y tot("C")
+END
+
+USE solution 1; USE gas_phase 1; USE reaction 1
+REACTION_TEMPERATURE
+ 100
+END
+
+USE solution 1; USE gas_phase 1; USE reaction 1
+REACTION_TEMPERATURE
+ 120
+USER_GRAPH 1
+ -axis_scale sy_axis 0.01 1 a a log
+ 10 graph_x pressure
+ 20 graph_sy tot("C")
+END
+

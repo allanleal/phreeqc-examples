@@ -1,0 +1,61 @@
+# CaSO4 in Na2SO4, data from Freyer and Voigt, 2004
+DATABASE ..\PITZER.DAT
+PRINT; -reset false
+
+SOLUTION 1
+ -temp 100; pH 7 charge
+EQUILIBRIUM_PHASES
+Anhydrite 0 0.15; Glauberite 0 0
+END
+
+USE solution 1
+REACTION
+  Na2SO4 1; 1e-4 0.02 24*0.17
+INCREMENTAL_REACTIONS true
+EQUILIBRIUM_PHASES 1
+Anhydrite 0 0.15;
+Thenardite 0 0
+Glauberite 0 0
+USER_GRAPH
+ -axis_scale x_axis 0 3.25
+-axis_scale y_axis 0 0.01
+-connect_simulations true
+-axis_titles "Na2SO4 / (mol/kgw)" "CaSO4 / (mol/kgw)"
+-chart_title "Anhydrite/Glauberite solubility in Na2SO4 solutions"
+-plot_tsv_file anhy_Na2SO4.csv
+40 graph_x tot("Na") / 2
+60 graph_y tot("Ca")
+SAVE solution 2; SAVE equilibrium_phases 2
+END
+
+USER_GRAPH
+-connect_simulations false
+END
+
+REACTION_TEMPERATURE
+ 150
+USE solution 1; USE reaction 1; USE equilibrium_phases 1
+SAVE solution 2; SAVE equilibrium_phases 2
+USER_GRAPH
+-connect_simulations true
+END
+
+USE solution 2; USE equilibrium_phases 2
+REACTION 2
+CaSO4 -1; 0 0.14999
+END
+
+USER_GRAPH
+-connect_simulations false
+END
+
+REACTION_TEMPERATURE
+ 200
+USE solution 1; USE reaction 1; USE equilibrium_phases 1
+USER_GRAPH
+-connect_simulations true
+SAVE solution 2; SAVE equilibrium_phases 2
+END
+
+USE solution 2; USE equilibrium_phases 2; USE reaction 2
+END

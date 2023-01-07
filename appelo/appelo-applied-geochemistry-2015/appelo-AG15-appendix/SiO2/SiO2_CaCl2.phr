@@ -1,0 +1,23 @@
+# SiO2(a) solubility f(T CaCl2)
+DATABASE ..\pitzer.DAT
+#
+SOLUTION 1
+END
+
+USE solution 1
+EQUILIBRIUM_PHASES 1
+ SiO2(a) 0
+REACTION_TEMPERATURE 1;
+25
+REACTION 1
+CaCl2 1; 0 10*0.7
+INCREMENTAL_REACTIONS true
+PRINT; -reset false; -status false
+USER_GRAPH
+# -headings dif_Si tc Si
+-axis_titles "CaCl2 / (mol/kgw)" "Si / (mol/kgw)"
+-plot_tsv_file sio2_Cacl2.dat
+-connect_simulations false
+10 graph_x tot("Ca")
+20 graph_y tot("Si")
+END

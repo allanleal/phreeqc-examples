@@ -1,0 +1,63 @@
+# SiO2(a) solubility f(T MgSO4)
+DATABASE ..\pitzer.DAT
+# INCLUDE$ c:\dos\P\pest\so4\Pab2\Pabalan.dat
+# INCLUDE$ C:\dos\P\pest\so4\Pab2\Al_Si_PZ.dat
+# PITZER
+# -LAMDA
+  # # H4SiO4    Cl-       0.0
+ # H4SiO4    Na+  0.0635  0  -0.32  5.69e-4
+ # H4SiO4    SO4-2  -0.085  0  0.28  -8.25e-4
+ # H4SiO4    Mg+2   0.489  0  -2.63  4.66e-3
+# -ZETA 
+ # H4SiO4    Mg+2  SO4-2  -0.04
+
+
+
+SOLUTION 1
+END
+ 
+USE solution 1
+EQUILIBRIUM_PHASES 1
+ SiO2(a) 0
+REACTION_TEMPERATURE 1;
+25
+REACTION 1
+MgSO4 1; 0 10*0.35
+INCREMENTAL_REACTIONS true
+PRINT; -reset false; -status false
+USER_GRAPH
+# -headings dif_Si tc Si
+-axis_titles "MgSO4 / (mol/kgw)" "Si / (mol/kgw)"
+-axis_scale y_axis 0 0.03
+-plot_tsv_file sio2_mgso4.dat
+-connect_simulations false
+10 graph_x tot("Mg")
+20 graph_y tot("Si")
+END
+ 
+USE solution 1
+EQUILIBRIUM_PHASES 1
+ SiO2(a) 0
+REACTION_TEMPERATURE 1;
+100
+REACTION 1
+MgSO4 1; 0 10*0.35
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+150
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+200
+END
+ 
+USE solution 1; USE EQUILIBRIUM_PHASES 1
+USE REACTION 1
+REACTION_TEMPERATURE 1;
+250
+END

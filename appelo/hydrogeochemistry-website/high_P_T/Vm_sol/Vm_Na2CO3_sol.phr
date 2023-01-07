@@ -1,0 +1,276 @@
+DATABASE c:\phreeqc\database\pitzer.dat
+PRINT; -reset false
+
+SOLUTION 1; pH 7 charge
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 1.000000
+REACTION_PRESSURE; 1.000000
+# from 0 to 15.
+REACTION; Na2CO3 1
+0 0.019380 0.022210 0.044250 0.047980 0.067290 0.067370 0.090600 0.127630 0.131430 0.131970 0.181060 0.247730 0.376970 0.492290 0.628690 
+USER_GRAPH; -headings 1 °C-1.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -14.170000, -14.300000, -13.370000, -13.400000, -12.600000, -12.590000, -11.850000, -11.050000, -10.760000, -10.930000, -9.930000, -8.660000, -6.700000, -5.180000, -3.570000, 
+20 dim d(16)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 16 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = Square, line_w = 0, color = Red
+120 plot_xy tot("C"), Vmol, symbol = None, color = Red
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 5.000000
+REACTION_PRESSURE; 1.000000
+# from 15 to 32.
+REACTION; Na2CO3 1
+0 0.055190 0.055270 0.115240 0.115340 0.224570 0.225290 0.303770 0.303840 0.416730 0.417400 0.568920 0.571070 0.684230 0.684760 0.839720 0.841380 0.954540 
+USER_GRAPH; -headings 5 °C-1.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -10.710000, -10.630000, -9.560000, -9.370000, -7.550000, -7.560000, -6.460000, -6.280000, -5.050000, -5.020000, -3.260000, -3.240000, -2.010000, -2.010000, -0.480000, -0.380000, 0.790000, 
+20 dim d(18)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 18 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = Diamond, line_w = 0, color = Green
+120 plot_xy tot("C"), Vmol, symbol = None, color = Green
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 15.000000
+REACTION_PRESSURE; 1.000000
+# from 32 to 40.
+REACTION; Na2CO3 1
+0 0.062340 0.119480 0.239710 0.320780 0.439940 0.601250 0.721120 0.883300 
+USER_GRAPH; -headings 15 °C-1.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -6.920000, -5.720000, -3.790000, -2.740000, -1.420000, 0.100000, 1.170000, 2.480000, 
+20 dim d(9)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 9 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = Triangle, line_w = 0, color = Blue
+120 plot_xy tot("C"), Vmol, symbol = None, color = Blue
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 25.000000
+REACTION_PRESSURE; 1.000000
+# from 48 to 90.
+REACTION; Na2CO3 1
+0 0.039650 0.039720 0.043320 0.048810 0.049950 0.056260 0.065120 0.065230 0.074340 0.091750 0.097050 0.099850 0.127380 0.154890 0.179420 0.197360 0.199800 0.240960 0.241370 0.248140 0.295490 \ 
+0.295980 0.373630 0.431770 0.432490 0.486840 0.490110 0.499600 0.582120 0.583090 0.635240 0.710820 0.749800 0.788840 0.874880 0.983360 0.983940 0.985780 1.000000 1.199600 1.499600 1.749200 \ 
+
+USER_GRAPH; -headings 25 °C-1.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -4.390000, -4.200000, -4.460000, -4.430000, -3.940000, -4.060000, -3.750000, -3.560000, -3.340000, -3.240000, -3.240000, -2.920000, -2.750000, -2.230000, -1.850000, -1.710000, -1.480000, -1.100000, -0.930000, -0.980000, -0.480000, \ 
+-0.310000, 0.420000, 0.870000, 1.040000, 1.360000, 1.390000, 1.610000, 2.180000, 2.350000, 2.610000, 3.210000, 3.610000, 3.810000, 4.370000, 5.120000, 5.180000, 5.150000, 5.330000, 6.560000, 8.240000, 9.490000, \ 
+
+20 dim d(43)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \ 
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33), d(34), d(35), d(36), d(37), d(38), d(39), d(40), d(41), d(42), \ 
+d(43), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 43 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = XCross, line_w = 0, color = Magenta
+120 plot_xy tot("C"), Vmol, symbol = None, color = Magenta
+150 end
+END
+
+
+USE solution 1
+REACTION_TEMPERATURE; 45.000000
+REACTION_PRESSURE; 1.000000
+# from 99 to 107.
+REACTION; Na2CO3 1
+0 0.043690 0.263840 0.334280 0.592580 0.760560 0.889730 0.979260 1.007900 
+USER_GRAPH; -headings 45 °C-1.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -1.530000, 1.620000, 2.350000, 4.420000, 5.540000, 6.330000, 6.880000, 7.070000, 
+20 dim d(9)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 9 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = Star, line_w = 0, color = Black
+120 plot_xy tot("C"), Vmol, symbol = None, color = Black
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 25.000000
+REACTION_PRESSURE; 99.000000
+# from 107 to 111.
+REACTION; Na2CO3 1
+0 0.100100 0.199800 0.499400 0.994000 
+USER_GRAPH; -headings 25 °C-99.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -1.070000, 0.040000, 3.100000, 6.420000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = TriangleDown, line_w = 0, color = Aqua
+120 plot_xy tot("C"), Vmol, symbol = None, color = Aqua
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 100.000000
+REACTION_PRESSURE; 99.000000
+# from 111 to 115.
+REACTION; Na2CO3 1
+0 0.100100 0.199800 0.499400 0.994000 
+USER_GRAPH; -headings 100 °C-99.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, 0.150000, 1.400000, 4.220000, 7.210000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = HDash, line_w = 0, color = Brown
+120 plot_xy tot("C"), Vmol, symbol = None, color = Brown
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 175.000000
+REACTION_PRESSURE; 99.000000
+# from 115 to 117.
+REACTION; Na2CO3 1
+0 0.199800 0.499400 
+USER_GRAPH; -headings 175 °C-99.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -14.050000, -8.800000, 
+20 dim d(3)
+30 read d(1), d(2), d(3), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 3 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = VDash, line_w = 0, color = Red
+120 plot_xy tot("C"), Vmol, symbol = None, color = Red
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 25.000000
+REACTION_PRESSURE; 277.000000
+# from 117 to 122.
+REACTION; Na2CO3 1
+0 0.100100 0.199800 0.499400 0.500400 0.994000 
+USER_GRAPH; -headings 25 °C-277.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, 0.730000, 1.930000, 4.940000, 5.000000, 8.400000, 
+20 dim d(6)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 6 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = Square, line_w = 0, color = Green
+120 plot_xy tot("C"), Vmol, symbol = None, color = Green
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 100.000000
+REACTION_PRESSURE; 277.000000
+# from 122 to 126.
+REACTION; Na2CO3 1
+0 0.100100 0.199800 0.499400 0.994000 
+USER_GRAPH; -headings 100 °C-277.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, 1.610000, 3.240000, 5.940000, 8.900000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = Diamond, line_w = 0, color = Blue
+120 plot_xy tot("C"), Vmol, symbol = None, color = Blue
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 175.000000
+REACTION_PRESSURE; 277.000000
+# from 126 to 130.
+REACTION; Na2CO3 1
+0 0.100100 0.199800 0.499400 0.994000 
+USER_GRAPH; -headings 175 °C-277.atm
+ -axis_titles "Na2CO3 / (mol/kg H2O)" "Na2CO3 molar volume / (cm³/mol)"
+10 data 0, -11.960000, -9.380000, -4.710000, -0.050000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("C") * 105.9907) / (tot("C") * rho) - 1e3 / (tot("C") * get(10))
+#50 if step_no > 1 then Vmol = Vm("CO3-2") + 2 * Vm("Na+")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("C") > 10 then dif = 0 
+64 if tc > 251 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("C"), d(step_no), symbol = Triangle, line_w = 0, color = Orange
+120 plot_xy tot("C"), Vmol, symbol = None, color = Orange
+150 end
+END

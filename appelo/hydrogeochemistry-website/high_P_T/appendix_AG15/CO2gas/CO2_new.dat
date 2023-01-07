@@ -1,0 +1,19 @@
+# This one now contains the data from ..CO2_PLU\CO2_pest.dat
+SOLUTION_SPECIES
+CO3-2 + 2 H+ = CO2 + H2O
+	log_k	16.681
+	delta_h -5.738	kcal
+	-analytic	464.1965	0.09344813	-26986.16	-165.75951	2248628.9
+	-dw	 1.92e-9
+-Vm   6.01  8.83  9.05  -4.80  -0.156
+ 
+PHASES
+CO2(g)
+	CO2 = CO2
+	log_k	-1.468
+	delta_h  -4.776 kcal
+-analytic	   25.752  -4.775e-2  -7.98e3  0  9.675e5  3.284e-5
+	-T_c  304.2 # critical T, K
+	-P_c   72.86 # critical P, atm
+	-Omega  0.225 # Pitzer acentric factor
+

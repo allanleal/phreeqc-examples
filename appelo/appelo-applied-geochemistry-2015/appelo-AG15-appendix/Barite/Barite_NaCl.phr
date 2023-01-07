@@ -1,0 +1,76 @@
+# Barite solubility in NaCl solutions, Templeton, 1960; summary Table from Blount, 1977
+DATABASE ..\PITZER.DAT
+# 
+SOLUTION 1
+ pH 7 charge
+ -temp 25
+EQUILIBRIUM_PHASES
+ Barite
+REACTION
+ NaCl 1; 0 5*0.1 11*0.5
+INCREMENTAL_REACTIONS true
+USER_GRAPH
+ -connect_simulations false
+ -plot_csv Barite_NaCl.dat
+ -axis_scale y_axis 0 1.4
+ -chart_ti "Barite solubility at 1 atm or the vapor pressure"
+ axis_titles "NaCl / M" "Barite solubility / mM"
+ 10 graph_x tot("Na")
+ 20 graph_y tot("Ba")*1e3
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 35
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 50
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 65
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 80
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 95
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 150
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 200
+END
+
+USE solution 1
+USE equilibrium_phases 1
+USE reaction 1
+REACTION_TEMPERATURE
+ 250
+END

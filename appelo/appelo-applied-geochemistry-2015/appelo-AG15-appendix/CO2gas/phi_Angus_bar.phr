@@ -1,0 +1,42 @@
+# Compare fugacity coefficient from Angus et al.
+#   Peng-Robinson calc'd with initial solutions.
+PRINT; -reset false
+SOLUTION 1
+pressure 100
+pH 7 charge
+GAS_PHASE 1
+CO2(g) 1e3
+-fixed_pressure
+REACTION_TEMPERATURE
+1 300 in 21
+REACTION_PRESSURE
+98.7
+USER_GRAPH
+ -plot_csv_file angus_bar.dat
+ -axis_titles "temperature / ºC" "CO2 fugacity coefficient"
+ -axis_scale x_axis 0 300
+ -axis_scale y_axis 0 1.2
+ -connect_simulations false
+ 10 graph_x tc
+ 20 graph_y PR_PHI("CO2(g)")  * 1.01325
+END
+
+USE solution 1; USE GAS_PHASE 1; USE reaction_temperature 1
+REACTION_PRESSURE
+246.7
+END
+
+USE solution 1; USE GAS_PHASE 1; USE reaction_temperature 1
+REACTION_PRESSURE
+493.5
+END
+
+# USE solution 1; USE GAS_PHASE 1; USE reaction_temperature 1
+# REACTION_PRESSURE
+# 740.2
+# END
+
+USE solution 1; USE GAS_PHASE 1; USE reaction_temperature 1
+REACTION_PRESSURE
+987
+END

@@ -1,0 +1,51 @@
+# calculate rho and Vm of CO2 + H2O. The 1st set is optimized on solubilities, compares OK with Teng; Song in Duan.
+# The 2nd, exact set for McBride data compares well with Duan's model in Energy & Fuels 2008, 22, 1666–1674.
+# see also Hu_DuanrhoCO2.pdf and Vm_CO2.png
+# The 3rd set is an optimization of CO2 solub + rho's, doesn't increase as much with T
+# The 2nd model gives a high CO2 volume > 100 cm3/mol at high temp. Why?
+# DATABASE c:\dos\P\INP_FILE\ElecCond\viscos\appendix\PHREEQC.DAT
+SOLUTION_SPECIES
+CO3-2 + 2 H+ = CO2 + H2O
+	log_k	16.681
+	delta_h -5.738	kcal
+	-analytic	464.1965	0.09344813	-26986.16	-165.75951	2248628.9
+	-dw	 1.92e-9
+	-Vm   6.66  2.49  1.09  -0.217  -0.156 # ref. 1 + McBride et al. 2015, JCED 60, 171
+# -Vm   7.294  0.907  2.05  -1.22  -1.60
+PRINT; -reset false
+SOLUTION 1
+pH 7 charge
+C 1e3
+pressure 350
+# -temp 65
+# REACTION
+# CO2 1; 3.5 in 12
+# GAS_PHASE 
+# -fixed_volume; -volume 0.1
+# CO2(g) 0
+REACTION_TEMPERATURE 
+1 300 in 11
+USER_GRAPH 
+-connect_simulations false
+# 10 graph_x pressure * 1.013 : graph_y rho : graph_sy Vm("CO2")
+# 10 graph_x tk -273.15 : graph_y rho : graph_sy Vm("CO2")
+10 graph_x tk -273.15 : graph_y Vm("CO2")
+END
+
+SOLUTION_SPECIES
+CO3-2 + 2 H+ = CO2 + H2O
+	log_k	16.681
+	delta_h -5.738	kcal
+	-analytic	464.1965	0.09344813	-26986.16	-165.75951	2248628.9
+	-dw	 1.92e-9
+	-Vm   6.66  2.49  1.09  -0.217  -0.156 # ref. 1 + McBride et al. 2015, JCED 60, 171
+-Vm   7.294  0.907  2.05  -1.22  -1.60 # this one gives the McBride data exactly
+# USE solution 1; USE reaction 1; USE gas_phase 1
+USE solution 1; USE reaction_temperature 1
+END
+
+INCLUDE$ c:\dos\p\p_db\pest\CO2_Plum\co2_pest.dat
+
+USE solution 1; USE reaction_temperature 1
+END
+

@@ -1,0 +1,154 @@
+DATABASE c:\phreeqc\database\pitzer.dat
+
+SOLUTION 1
+-temp 25
+pH 7 charge
+Na 100; Cl 100
+EQUILIBRIUM_PHASES 1
+CO2(g)
+SAVE solution 1
+END
+
+USE solution 1
+EQUILIBRIUM_PHASES 1
+Calcite
+REACTION_PRESSURE 1
+34 477 952 1429
+REACTION_TEMPERATURE
+0
+USER_GRAPH 1 in 0.1 M NaCl solution
+-axis_titles "pressure / atm" "Ca / (mmol/kgw)"
+-plot_tsv_file 100mMNaCl.dat
+-axis_scale y_axis 0 30
+-connect_simulations false
+10 graph_x pressure
+20 graph_y tot("Ca") * 1e3
+END
+
+USE SOLUTION 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+END
+
+USE solution 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+REACTION_TEMPERATURE
+100
+END
+
+USE solution 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+REACTION_TEMPERATURE
+200
+END
+
+USE solution 1
+USE equilibrium_phases 1
+REACTION_PRESSURE 1
+68 477 952 1429
+REACTION_TEMPERATURE
+250
+END
+
+SOLUTION 1
+-temp 25
+pH 7 charge
+Na 4000; Cl 4000
+EQUILIBRIUM_PHASES 1
+CO2(g)
+SAVE solution 1
+END
+
+USE solution 1
+EQUILIBRIUM_PHASES 1
+Calcite
+REACTION_PRESSURE 1
+34 477 952 1429
+REACTION_TEMPERATURE
+0
+USER_GRAPH 1; -detach
+USER_GRAPH 2 in 4M NaCl solution
+-axis_titles "pressure / atm" "Ca / (mmol/kgw)"
+-plot_tsv_file 4MNaCl.dat
+-connect_simulations false
+10 graph_x pressure
+20 graph_y tot("Ca") * 1e3
+END
+
+USE SOLUTION 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+END
+
+USE solution 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+REACTION_TEMPERATURE
+100
+END
+
+USE solution 1
+USE equilibrium_phases 1
+REACTION_PRESSURE 1
+34 477 952 1429
+
+REACTION_TEMPERATURE
+200
+END
+
+USE solution 1
+USE equilibrium_phases 1
+REACTION_PRESSURE 1
+68 477 952 1429
+REACTION_TEMPERATURE
+250
+END
+
+USER_GRAPH 1; -detach
+USER_GRAPH 2; -detach
+SOLUTION_SPREAD
+-units mg/L
+-density 1.168
+-temp 25
+Number	Na	Alkalinity	B	Br	S(6)	Si	Cl	C(4)
+1	102000	3000	150	3500	4500	30	150000	10 CO2(g)# mg/L
+SAVE solution 1
+END
+
+USE solution 1
+EQUILIBRIUM_PHASES 1
+Calcite
+REACTION_PRESSURE 1
+34 477 952 1429
+REACTION_TEMPERATURE
+0
+USER_GRAPH 3 in brine
+-axis_titles "pressure / atm" "Ca / (mmol/kgw)"
+-plot_tsv_file brine.dat
+-connect_simulations false
+10 graph_x pressure
+20 graph_y tot("Ca") * 1e3
+END
+
+USE SOLUTION 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+REACTION_TEMPERATURE
+25
+END
+
+USE solution 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+REACTION_TEMPERATURE
+100
+END
+
+USE solution 1
+USE equilibrium_phases 1; USE reaction_pressure 1
+REACTION_TEMPERATURE
+200
+END
+
+USE solution 1
+USE equilibrium_phases 1
+REACTION_PRESSURE 1
+68 477 952 1429
+REACTION_TEMPERATURE
+250
+END

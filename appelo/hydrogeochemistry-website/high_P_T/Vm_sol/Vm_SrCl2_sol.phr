@@ -1,0 +1,271 @@
+PRINT; -reset false
+SOLUTION 1; pH 7 charge
+END
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 15.000000
+REACTION_PRESSURE; 1.000000
+# from 0 to 4.
+REACTION; SrCl2 1
+0 0.050000 0.500000 1.000000 2.500000 
+USER_GRAPH; -headings 15 °C-1.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 17.477965, 20.249324, 22.589649, 33.148526, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Square, line_w = 0, color = Red
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Red
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 25.000000
+REACTION_PRESSURE; 1.000000
+# from 10 to 39.
+REACTION; SrCl2 1
+0 0.003740 0.012600 0.021900 0.032500 0.050000 0.065200 0.099388 0.129200 0.197500 0.200200 0.251300 0.270148 0.299800 0.328600 0.400200 0.459628 0.499600 0.500000 0.600000 0.699000 0.779959 \ 
+0.800000 0.899600 0.996200 1.000000 1.055673 1.253665 1.510686 2.500000 
+USER_GRAPH; -headings 25 °C-1.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 19.385877, 19.353254, 19.452491, 19.895267, 19.129893, 20.160234, 19.800914, 20.726614, 21.230587, 21.236266, 21.577449, 21.484517, 21.907462, 22.019479, 22.500087, 22.464019, 23.073035, 21.479827, 23.557050, 23.999321, 24.181522, \ 
+24.422903, 24.820734, 25.098337, 23.765195, 25.158512, 25.806514, 26.504216, 33.964941, 
+20 dim d(30)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \ 
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 30 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Circle, line_w = 0, color = Orange
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Orange
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 35.000000
+REACTION_PRESSURE; 1.000000
+# from 43 to 48.
+REACTION; SrCl2 1
+0 0.050000 0.500000 1.000000 2.000000 2.500000 
+USER_GRAPH; -headings 35 °C-1.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 19.710659, 22.163186, 24.405255, 32.236530, 34.488276, 
+20 dim d(6)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 6 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Plus, line_w = 0, color = Yellow
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Yellow
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 45.000000
+REACTION_PRESSURE; 1.000000
+# from 48 to 52.
+REACTION; SrCl2 1
+0 0.050000 0.500000 1.000000 2.500000 
+USER_GRAPH; -headings 45 °C-1.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 20.087980, 22.487449, 24.703340, 34.793172, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Star, line_w = 0, color = Black
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Black
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 55.000000
+REACTION_PRESSURE; 1.000000
+# from 54 to 58.
+REACTION; SrCl2 1
+0 0.050000 0.500000 1.000000 2.500000 
+USER_GRAPH; -headings 55 °C-1.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 19.785723, 22.468868, 24.705441, 34.866337, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = HDash, line_w = 0, color = Brown
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Brown
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 75.000000
+REACTION_PRESSURE; 20.000000
+# from 58 to 62.
+REACTION; SrCl2 1
+0 0.100000 0.200000 0.500000 1.000000 
+USER_GRAPH; -headings 75 °C-20.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 19.890000, 20.620000, 22.270000, 23.820000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = VDash, line_w = 0, color = Red
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Red
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 100.000000
+REACTION_PRESSURE; 20.000000
+# from 62 to 66.
+REACTION; SrCl2 1
+0 0.100000 0.200000 0.500000 1.000000 
+USER_GRAPH; -headings 100 °C-20.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 17.040000, 17.950000, 19.880000, 21.980000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Square, line_w = 0, color = Green
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Green
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 125.000000
+REACTION_PRESSURE; 20.000000
+# from 66 to 70.
+REACTION; SrCl2 1
+0 0.100000 0.200000 0.500000 1.000000 
+USER_GRAPH; -headings 125 °C-20.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 11.970000, 13.710000, 16.190000, 18.760000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Diamond, line_w = 0, color = Blue
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Blue
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 150.000000
+REACTION_PRESSURE; 20.000000
+# from 70 to 74.
+REACTION; SrCl2 1
+0 0.100000 0.200000 0.500000 1.000000 
+USER_GRAPH; -headings 150 °C-20.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, 4.870000, 7.350000, 10.840000, 14.520000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Triangle, line_w = 0, color = Orange
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Orange
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 175.000000
+REACTION_PRESSURE; 20.000000
+# from 74 to 78.
+REACTION; SrCl2 1
+0 0.100000 0.200000 0.500000 1.000000 
+USER_GRAPH; -headings 175 °C-20.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, -4.530000, -1.590000, 3.380000, 8.250000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = Circle, line_w = 0, color = Magenta
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Magenta
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 200.000000
+REACTION_PRESSURE; 20.000000
+# from 78 to 82.
+REACTION; SrCl2 1
+0 0.100000 0.200000 0.500000 1.000000 
+USER_GRAPH; -headings 200 °C-20.atm
+ -axis_titles "SrCl2 / (mol/kg H2O)" "SrCl2 molar volume / (cm³/mol)"
+10 data 0, -17.710000, -13.570000, -6.390000, 0.320000, 
+20 dim d(5)
+30 read d(1), d(2), d(3), d(4), d(5), 
+40 if step_no = 1 then put(rho, 10)
+#50 if step_no > 1 then Vmol = (1e3 + tot("Sr") * 158.526) / (tot("Sr") * rho) - 1e3 / (tot("Sr") * get(10))
+50 if step_no > 1 then Vmol = Vm("Sr+2") + 2*Vm("Cl-")
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Sr") > 10 then dif = 0 
+64 if tc > 201 then dif = 0 
+90 if step_no = 5 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Sr"), d(step_no), symbol = XCross, line_w = 0, color = Yellow
+120 plot_xy tot("Sr"), Vmol, symbol = None, color = Yellow
+150 end
+END

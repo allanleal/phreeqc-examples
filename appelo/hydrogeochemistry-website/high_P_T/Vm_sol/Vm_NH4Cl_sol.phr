@@ -1,0 +1,185 @@
+PRINT; -reset false
+SOLUTION 1; pH 7 charge
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 15.000000
+REACTION_PRESSURE; 1.000000
+# from 9 to 27.
+REACTION; AmmHCl 1
+0 0.010010 0.020020 0.050000 0.050060 0.070000 0.100000 0.100130 0.200000 0.200260 0.300000 0.500000 0.500650 1.000000 1.500000 2.000000 3.000000 4.000000 5.000000
+#USER_PUNCH
+USER_GRAPH; -headings 15 °C_1.atm
+ -axis_titles "NH4Cl / (mol/kg H2O)" "NH4Cl molar volume / (cm³/mol)"
+10 data 0, 35.535000, 35.029000, 35.869000, 35.113000, 35.744000, 35.941000, 35.283000, 36.836000, 36.021000, 36.087000, 36.605000, 36.602000, 36.899000, 37.271000, 37.651000, 38.095000, 38.312000, 38.988000,
+20 dim d(19)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19),
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 53.4917) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Cl") > 10 or tc > 200 or pressure > 1e3 then dif = 0
+#80 punch dif, str$(tc), str$(pressure), str$(step_no + get(1))
+90 if step_no = 19 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Diamond, line_w = 0, color = Green
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Green
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 25.000000
+REACTION_PRESSURE; 1.000000
+# from 39 to 112.
+REACTION; AmmHCl 1
+0 0.010010 0.020020 0.049940 0.050000 0.050060 0.060410 0.070000 0.100000 0.100000 0.100130 0.150670 0.151690 0.200000 0.200000 0.200260 0.200270 0.253110 0.300000 0.304160 0.400000 0.406880 \
+0.407220 0.461370 0.499990 0.500000 0.500650 0.552550 0.598720 0.600000 0.600780 0.711860 0.799570 0.800000 0.821940 0.899640 0.939540 1.000000 1.000000 1.000840 1.032470 1.500000 1.537700 \
+1.564630 1.648760 1.653030 1.971470 2.000000 2.000000 2.046810 2.168100 2.338340 2.631130 2.821080 2.894420 3.000000 3.000000 3.290610 3.445320 3.933490 4.000000 4.000000 4.099700 4.521170 \
+4.633670 4.810540 5.000000 5.000000 5.367940 5.550970 6.000000 6.124920 6.338710 7.380000
+#USER_PUNCH
+USER_GRAPH; -headings 25 °C_1.atm
+ -axis_titles "NH4Cl / (mol/kg H2O)" "NH4Cl molar volume / (cm³/mol)"
+10 data 0, 35.609000, 35.602000, 35.990000, 36.415000, 35.988000, 35.709000, 36.432000, 36.738000, 36.043000, 36.058000, 36.699000, 36.811000, 37.359000, 36.394000, 36.548000, 36.473000, 35.824000, 36.616000, 36.912000, 36.758000, 36.875000, \
+36.839000, 37.052000, 36.941000, 37.104000, 36.758000, 37.052000, 37.052000, 37.003000, 36.843000, 37.195000, 37.230000, 37.197000, 37.310000, 37.305000, 37.344000, 37.368000, 37.374000, 37.381000, 37.455000, 37.714000, 37.690000, \
+37.817000, 37.847000, 37.796000, 37.917000, 38.052000, 37.976000, 37.999000, 38.076000, 38.129000, 38.271000, 38.798000, 38.380000, 38.479000, 38.411000, 38.528000, 38.586000, 38.731000, 38.676000, 38.763000, 38.795000, 39.259000, \
+38.951000, 39.001000, 39.322000, 39.049000, 39.145000, 39.189000, 39.279000, 39.315000, 39.357000, 39.529000,
+20 dim d(74)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23), d(24), d(25), d(26), d(27), d(28), d(29), d(30), d(31), d(32), d(33), d(34), d(35), d(36), d(37), d(38), d(39), d(40), d(41), d(42), \
+d(43), d(44), d(45), d(46), d(47), d(48), d(49), d(50), d(51), d(52), d(53), d(54), d(55), d(56), d(57), d(58), d(59), d(60), d(61), d(62), d(63), \
+d(64), d(65), d(66), d(67), d(68), d(69), d(70), d(71), d(72), d(73), d(74),
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 53.4917) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Cl") > 10 or tc > 200 or pressure > 1e3 then dif = 0
+#80 punch dif, str$(tc), str$(pressure), str$(step_no + get(1))
+90 if step_no = 74 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Circle, line_w = 0, color = Orange
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Orange
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 40.000000
+REACTION_PRESSURE; 1.000000
+# from 147 to 159.
+REACTION; AmmHCl 1
+0 0.050000 0.070000 0.100000 0.200000 0.300000 0.500000 1.000000 1.500000 2.000000 3.000000 4.000000 5.000000
+#USER_PUNCH
+USER_GRAPH; -headings 40 °C_1.atm
+ -axis_titles "NH4Cl / (mol/kg H2O)" "NH4Cl molar volume / (cm³/mol)"
+10 data 0, 36.933000, 36.829000, 37.148000, 37.772000, 36.953000, 37.452000, 37.690000, 38.045000, 38.381000, 38.791000, 38.982000, 39.620000,
+20 dim d(13)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13),
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 53.4917) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Cl") > 10 or tc > 200 or pressure > 1e3 then dif = 0
+#80 punch dif, str$(tc), str$(pressure), str$(step_no + get(1))
+90 if step_no = 13 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Star, line_w = 0, color = Black
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Black
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 50.000000
+REACTION_PRESSURE; 1.000000
+# from 181 to 203.
+REACTION; AmmHCl 1
+0 0.050000 0.070000 0.100000 0.200000 0.300000 0.500000 1.000000 1.500000 2.000000 3.000000 3.043290 3.560860 4.000000 4.103670 4.673620 5.000000 5.272800 5.903520 6.568330 7.270080 8.011920 \
+8.797410
+#USER_PUNCH
+USER_GRAPH; -headings 50 °C_1.atm
+ -axis_titles "NH4Cl / (mol/kg H2O)" "NH4Cl molar volume / (cm³/mol)"
+10 data 0, 36.823000, 36.627000, 37.035000, 37.763000, 36.936000, 37.459000, 37.730000, 38.106000, 38.442000, 38.868000, 38.853000, 39.004000, 39.059000, 39.139000, 39.286000, 39.712000, 39.419000, 39.541000, 39.637000, 39.746000, 39.850000, \
+39.934000,
+20 dim d(23)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15), d(16), d(17), d(18), d(19), d(20), d(21), \
+d(22), d(23),
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 53.4917) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Cl") > 10 or tc > 200 or pressure > 1e3 then dif = 0
+#80 punch dif, str$(tc), str$(pressure), str$(step_no + get(1))
+90 if step_no = 23 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = VDash, line_w = 0, color = Red
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Red
+150 end
+END
+
+
+USE solution 1
+REACTION_TEMPERATURE; 60.000000
+REACTION_PRESSURE; 1.000000
+# from 228 to 239.
+REACTION; AmmHCl 1
+0 3.043290 3.560860 4.103670 4.673620 5.272800 5.903520 6.568330 7.270080 8.011920 8.797410 9.630490
+#USER_PUNCH
+USER_GRAPH; -headings 60 °C_1.atm
+ -axis_titles "NH4Cl / (mol/kg H2O)" "NH4Cl molar volume / (cm³/mol)"
+10 data 0, 38.958000, 39.081000, 39.195000, 39.326000, 39.469000, 39.580000, 39.685000, 39.802000, 39.897000, 39.974000, 40.077000,
+20 dim d(12)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12),
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 53.4917) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Cl") > 10 or tc > 200 or pressure > 1e3 then dif = 0
+#80 punch dif, str$(tc), str$(pressure), str$(step_no + get(1))
+90 if step_no = 12 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Diamond, line_w = 0, color = Blue
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Blue
+150 end
+END
+
+USE solution 1
+REACTION_TEMPERATURE; 80.000000
+REACTION_PRESSURE; 1.000000
+# from 274 to 287.
+REACTION; AmmHCl 1
+0 3.043290 3.560860 4.103670 4.673620 5.272800 5.903520 6.568330 7.270080 8.011920 8.797410 9.630490 10.515650 11.457910
+#USER_PUNCH
+USER_GRAPH; -headings 80 °C_1.atm
+ -axis_titles "NH4Cl / (mol/kg H2O)" "NH4Cl molar volume / (cm³/mol)"
+10 data 0, 38.680000, 38.851000, 39.030000, 39.190000, 39.335000, 39.469000, 39.613000, 39.747000, 39.856000, 39.961000, 40.076000, 40.186000, 40.291000,
+20 dim d(14)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14),
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 53.4917) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Cl") > 10 or tc > 200 or pressure > 1e3 then dif = 0
+#80 punch dif, str$(tc), str$(pressure), str$(step_no + get(1))
+90 if step_no = 14 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = Plus, line_w = 0, color = Black
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Black
+150 end
+END
+
+
+USE solution 1
+REACTION_TEMPERATURE; 100.000000
+REACTION_PRESSURE; 1.000000
+# from 327 to 341.
+REACTION; AmmHCl 1
+0 3.043290 3.560860 4.103670 4.673620 5.272800 5.903520 6.568330 7.270080 8.011920 8.797410 9.630490 10.515650 11.457910 12.462990
+#USER_PUNCH
+USER_GRAPH; -headings 100 °C_1.atm
+ -axis_titles "NH4Cl / (mol/kg H2O)" "NH4Cl molar volume / (cm³/mol)"
+10 data 0, 37.466000, 38.112000, 38.369000, 38.618000, 38.837000, 39.075000, 39.288000, 39.482000, 39.675000, 39.839000, 39.991000, 40.148000, 40.282000, 40.410000,
+20 dim d(15)
+30 read d(1), d(2), d(3), d(4), d(5), d(6), d(7), d(8), d(9), d(10), d(11), d(12), d(13), d(14), d(15),
+40 if step_no = 1 then put(rho, 10)
+50 if step_no > 1 then Vmol = (1e3 + tot("Cl") * 53.4917) / (tot("Cl") * rho) - 1e3 / (tot("Cl") * get(10))
+60 if step_no = 1 then dif = 0 else dif = Vmol - d(step_no)
+62 if tot("Cl") > 10 or tc > 200 or pressure > 1e3 then dif = 0
+#80 punch dif, str$(tc), str$(pressure), str$(step_no + get(1))
+90 if step_no = 15 then put(step_no + get(1), 1)
+100 if step_no = 1 then goto 150
+110 plot_xy tot("Cl"), d(step_no), symbol = VDash, line_w = 0, color = Green
+120 plot_xy tot("Cl"), Vmol, symbol = None, color = Green
+150 end
+END
