@@ -1,1 +1,0 @@
-c:\phreeqc\phreeqc.exe %1 %1.out c:\phreeqc\database\phreeqc.dat
