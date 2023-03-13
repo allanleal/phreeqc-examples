@@ -1,0 +1,34 @@
+# Kinetic dissolution of quartz
+#
+RATES
+ Quartz
+ # d qu / dt = (A0 / V) * (m / m0)^0.67 * k * (1 - SI_qu)
+ # Specific rate k from Rimstidt and Barnes, 1980, GCA 44, 1683
+ #  k = 10^-13.7 mol/m2/s (25 C)
+ #  A0, initial surface of quartz (m2) recalc's to mol/s
+ #  V, solution volume in contact with A0
+ -start
+  1 A0 = parm(1)
+  2 V = parm(2)
+  10 rate = (A0 / V) * (m/m0)^0.67 * 10^-13.7 * (1 -  SR("Quartz"))
+  20 save rate * time
+ -end
+KINETICS
+Quartz
+ -formula SiO2
+ -m0  158.8                        # initial moles of quartz
+ -parms 23.13  0.16
+ -time_step 5 year in 15           # 15 time steps
+INCREMENTAL_REACTIONS true
+
+SOLUTION 1
+USER_GRAPH
+ -chart_title "Quartz dissolution"
+ -axis_titles Years "mmol / L"
+ -axis_scale x_axis 0 5
+ -initial_solutions  true
+ -start
+ 10 graph_x total_time / 3.1536e7  # time in years on x-axis
+ 20 graph_y tot("Si") * 1e3        # parameter on y-axis
+ -end
+END
